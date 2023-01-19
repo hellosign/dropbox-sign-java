@@ -1,7 +1,7 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hellosign.openapi.EventCallbackHelper;
-import com.hellosign.openapi.JSON;
-import com.hellosign.openapi.model.EventCallbackRequest;
+import com.dropbox.sign.EventCallbackHelper;
+import com.dropbox.sign.JSON;
+import com.dropbox.sign.model.EventCallbackRequest;
 
 import java.util.HashMap;
 import java.util.Map;
