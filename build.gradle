@@ -5,7 +5,7 @@ apply plugin: 'signing'
 
 group = 'com.dropbox.sign'
 archivesBaseName = 'dropbox-sign'
-version = '1.0.0-beta23.1'
+version = '1.0.0-beta2301'
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
@@ -82,9 +82,9 @@ uploadArchives {
                 url 'https://www.hellosign.com/'
 
                 scm {
-                    connection 'scm:git:git://github.com/hellosign/hellosign-java-sdk.git'
-                    developerConnection 'scm:git:git@github.com:hellosign/hellosign-java-sdk.git'
-                    url 'https://github.com/hellosign/hellosign-java-sdk'
+                    connection 'scm:git:git://github.com/hellosign/dropbox-sign-java.git'
+                    developerConnection 'scm:git:git@github.com:hellosign/dropbox-sign-java.git'
+                    url 'https://github.com/hellosign/dropbox-sign-java'
                 }
 
                 licenses {
