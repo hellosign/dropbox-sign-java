@@ -37,6 +37,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.dropbox.sign.JSON;
 
 
@@ -58,6 +60,7 @@ import com.dropbox.sign.ApiException;
     SubFormFieldsPerDocumentBase.JSON_PROPERTY_NAME,
     SubFormFieldsPerDocumentBase.JSON_PROPERTY_PAGE
 })
+@JsonIgnoreProperties(ignoreUnknown=true)
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "type", visible = true)
 @JsonSubTypes({
@@ -118,6 +121,14 @@ public class SubFormFieldsPerDocumentBase {
   private Integer page;
 
   public SubFormFieldsPerDocumentBase() { 
+  }
+
+  /**
+   * Attempt to instantiate and hydrate a new instance of this class
+   * @param jsonData String of JSON data representing target object
+   */
+  static public SubFormFieldsPerDocumentBase init(String jsonData) throws Exception {
+    return new ObjectMapper().readValue(jsonData, SubFormFieldsPerDocumentBase.class);
   }
 
   public SubFormFieldsPerDocumentBase documentIndex(Integer documentIndex) {
@@ -228,6 +239,10 @@ public class SubFormFieldsPerDocumentBase {
     this.signer = signer;
     return this;
   }
+  public SubFormFieldsPerDocumentBase signer(Integer signer) {
+    this.signer = String.valueOf(signer);
+    return this;
+  }
 
    /**
    * Signer index identified by the offset in the signers parameter (0-based indexing), indicating which signer should fill out the field.  **NOTE**: If type is &#x60;text-merge&#x60; or &#x60;checkbox-merge&#x60;, you must set this to sender in order to use pre-filled data.
@@ -247,6 +262,10 @@ public class SubFormFieldsPerDocumentBase {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSigner(String signer) {
     this.signer = signer;
+  }
+
+  public void setSigner(Integer signer) {
+    this.signer = String.valueOf(signer);
   }
 
 
