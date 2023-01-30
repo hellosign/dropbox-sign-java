@@ -36,7 +36,6 @@ jobs:
 
   publish:
     runs-on: ubuntu-latest
-    if: github.repository == 'hellosign/dropbox-sign-java' && github.ref == 'refs/heads/main'
     needs: [ build ]
     steps:
       - name: Checkout
