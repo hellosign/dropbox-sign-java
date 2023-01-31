@@ -62,7 +62,6 @@ jobs:
           ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_PASSWORD }}
 
       - name: Setup tmate session (debug)
-        if: $
         uses: mxschmitt/action-tmate@v3
 
 #      - name: Retrieve version
