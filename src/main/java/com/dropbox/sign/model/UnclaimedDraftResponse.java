@@ -25,6 +25,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.dropbox.sign.JSON;
 
 
@@ -41,6 +43,7 @@ import com.dropbox.sign.ApiException;
     UnclaimedDraftResponse.JSON_PROPERTY_EXPIRES_AT,
     UnclaimedDraftResponse.JSON_PROPERTY_TEST_MODE
 })
+@JsonIgnoreProperties(ignoreUnknown=true)
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class UnclaimedDraftResponse {
   public static final String JSON_PROPERTY_SIGNATURE_REQUEST_ID = "signature_request_id";
@@ -62,6 +65,21 @@ public class UnclaimedDraftResponse {
   private Boolean testMode;
 
   public UnclaimedDraftResponse() { 
+  }
+
+  /**
+   * Attempt to instantiate and hydrate a new instance of this class
+   * @param jsonData String of JSON data representing target object
+   */
+  static public UnclaimedDraftResponse init(String jsonData) throws Exception {
+    return new ObjectMapper().readValue(jsonData, UnclaimedDraftResponse.class);
+  }
+
+  static public UnclaimedDraftResponse init(HashMap data) throws Exception {
+    return new ObjectMapper().readValue(
+      new ObjectMapper().writeValueAsString(data),
+      UnclaimedDraftResponse.class
+    );
   }
 
   public UnclaimedDraftResponse signatureRequestId(String signatureRequestId) {
