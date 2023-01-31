@@ -63,6 +63,7 @@ jobs:
 
       - name: Setup tmate session (debug)
         uses: mxschmitt/action-tmate@v3
+        if: always()
 
 #      - name: Retrieve version
 #        run: |
