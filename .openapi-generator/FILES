@@ -1,6 +1,7 @@
 .gitignore
 .travis.yml
 README.md
+VERSION
 build.gradle
 build.sbt
 docs/AccountApi.md
