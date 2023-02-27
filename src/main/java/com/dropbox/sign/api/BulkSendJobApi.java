@@ -51,6 +51,8 @@ public class BulkSendJobApi {
    * Get Bulk Send Job
    * Returns the status of the BulkSendJob and its SignatureRequests specified by the &#x60;bulk_send_job_id&#x60; parameter.
    * @param bulkSendJobId The id of the BulkSendJob to retrieve. (required)
+   * @param page Which page number of the BulkSendJob list to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
+   * @param pageSize Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is 20. (optional, default to 20)
    * @return BulkSendJobGetResponse
    * @throws ApiException if fails to make API call
    * @http.response.details
@@ -60,14 +62,56 @@ public class BulkSendJobApi {
        <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
-  public BulkSendJobGetResponse bulkSendJobGet(String bulkSendJobId) throws ApiException {
-    return bulkSendJobGetWithHttpInfo(bulkSendJobId).getData();
+  public BulkSendJobGetResponse bulkSendJobGet(String bulkSendJobId, Integer page, Integer pageSize) throws ApiException {
+    return bulkSendJobGetWithHttpInfo(bulkSendJobId, page, pageSize).getData();
   }
+
+
+  /**
+   * @see BulkSendJobApi#bulkSendJobGet(String, Integer, Integer)
+   */
+  public BulkSendJobGetResponse bulkSendJobGet(String bulkSendJobId) throws ApiException {
+    Integer page = 1;
+    Integer pageSize = 20;
+
+    return bulkSendJobGetWithHttpInfo(bulkSendJobId, page, pageSize).getData();
+  }
+
+  /**
+   * @see BulkSendJobApi#bulkSendJobGetWithHttpInfo(String, Integer, Integer)
+   */
+  public ApiResponse<BulkSendJobGetResponse> bulkSendJobGetWithHttpInfo(String bulkSendJobId) throws ApiException {
+    Integer page = 1;
+    Integer pageSize = 20;
+
+    return bulkSendJobGetWithHttpInfo(bulkSendJobId, page, pageSize);
+  }
+
+  /**
+   * @see BulkSendJobApi#bulkSendJobGet(String, Integer, Integer)
+   */
+  public BulkSendJobGetResponse bulkSendJobGet(String bulkSendJobId, Integer page) throws ApiException {
+    Integer pageSize = 20;
+
+    return bulkSendJobGetWithHttpInfo(bulkSendJobId, page, pageSize).getData();
+  }
+
+  /**
+   * @see BulkSendJobApi#bulkSendJobGetWithHttpInfo(String, Integer, Integer)
+   */
+  public ApiResponse<BulkSendJobGetResponse> bulkSendJobGetWithHttpInfo(String bulkSendJobId, Integer page) throws ApiException {
+    Integer pageSize = 20;
+
+    return bulkSendJobGetWithHttpInfo(bulkSendJobId, page, pageSize);
+  }
+
 
   /**
    * Get Bulk Send Job
    * Returns the status of the BulkSendJob and its SignatureRequests specified by the &#x60;bulk_send_job_id&#x60; parameter.
    * @param bulkSendJobId The id of the BulkSendJob to retrieve. (required)
+   * @param page Which page number of the BulkSendJob list to return. Defaults to &#x60;1&#x60;. (optional, default to 1)
+   * @param pageSize Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is 20. (optional, default to 20)
    * @return ApiResponse&lt;BulkSendJobGetResponse&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
@@ -77,8 +121,14 @@ public class BulkSendJobApi {
        <tr><td> 4XX </td><td> failed_operation </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<BulkSendJobGetResponse> bulkSendJobGetWithHttpInfo(String bulkSendJobId) throws ApiException {
+  public ApiResponse<BulkSendJobGetResponse> bulkSendJobGetWithHttpInfo(String bulkSendJobId, Integer page, Integer pageSize) throws ApiException {
     
+    if (page == null) {
+        page = 1;
+    }
+    if (pageSize == null) {
+        pageSize = 20;
+    }
     Object localVarPostBody = null;
     
     // verify the required parameter 'bulkSendJobId' is set
@@ -96,6 +146,8 @@ public class BulkSendJobApi {
     Map<String, String> localVarCookieParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "page", page));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "page_size", pageSize));
 
     
     
@@ -139,6 +191,46 @@ public class BulkSendJobApi {
   public BulkSendJobListResponse bulkSendJobList(Integer page, Integer pageSize) throws ApiException {
     return bulkSendJobListWithHttpInfo(page, pageSize).getData();
   }
+
+
+  /**
+   * @see BulkSendJobApi#bulkSendJobList(Integer, Integer)
+   */
+  public BulkSendJobListResponse bulkSendJobList() throws ApiException {
+    Integer page = 1;
+    Integer pageSize = 20;
+
+    return bulkSendJobListWithHttpInfo(page, pageSize).getData();
+  }
+
+  /**
+   * @see BulkSendJobApi#bulkSendJobListWithHttpInfo(Integer, Integer)
+   */
+  public ApiResponse<BulkSendJobListResponse> bulkSendJobListWithHttpInfo() throws ApiException {
+    Integer page = 1;
+    Integer pageSize = 20;
+
+    return bulkSendJobListWithHttpInfo(page, pageSize);
+  }
+
+  /**
+   * @see BulkSendJobApi#bulkSendJobList(Integer, Integer)
+   */
+  public BulkSendJobListResponse bulkSendJobList(Integer page) throws ApiException {
+    Integer pageSize = 20;
+
+    return bulkSendJobListWithHttpInfo(page, pageSize).getData();
+  }
+
+  /**
+   * @see BulkSendJobApi#bulkSendJobListWithHttpInfo(Integer, Integer)
+   */
+  public ApiResponse<BulkSendJobListResponse> bulkSendJobListWithHttpInfo(Integer page) throws ApiException {
+    Integer pageSize = 20;
+
+    return bulkSendJobListWithHttpInfo(page, pageSize);
+  }
+
 
   /**
    * List Bulk Send Jobs

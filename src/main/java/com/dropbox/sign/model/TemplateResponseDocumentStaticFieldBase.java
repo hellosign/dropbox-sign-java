@@ -17,10 +17,19 @@ import java.util.Objects;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.HashMap;
-import com.dropbox.sign.model.TemplateResponseFieldAvgTextLength;
+import com.dropbox.sign.model.TemplateResponseDocumentStaticFieldCheckbox;
+import com.dropbox.sign.model.TemplateResponseDocumentStaticFieldDateSigned;
+import com.dropbox.sign.model.TemplateResponseDocumentStaticFieldDropdown;
+import com.dropbox.sign.model.TemplateResponseDocumentStaticFieldHyperlink;
+import com.dropbox.sign.model.TemplateResponseDocumentStaticFieldInitials;
+import com.dropbox.sign.model.TemplateResponseDocumentStaticFieldRadio;
+import com.dropbox.sign.model.TemplateResponseDocumentStaticFieldSignature;
+import com.dropbox.sign.model.TemplateResponseDocumentStaticFieldText;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
@@ -33,35 +42,56 @@ import com.dropbox.sign.JSON;
 
 import com.dropbox.sign.ApiException;
 /**
- * TemplateResponseNamedFormField
+ * An array describing static overlay fields. **Note** only available for certain subscriptions.
  */
+@ApiModel(description = "An array describing static overlay fields. **Note** only available for certain subscriptions.")
 @JsonPropertyOrder({
-    TemplateResponseNamedFormField.JSON_PROPERTY_NAME,
-    TemplateResponseNamedFormField.JSON_PROPERTY_TYPE,
-    TemplateResponseNamedFormField.JSON_PROPERTY_SIGNER,
-    TemplateResponseNamedFormField.JSON_PROPERTY_X,
-    TemplateResponseNamedFormField.JSON_PROPERTY_Y,
-    TemplateResponseNamedFormField.JSON_PROPERTY_WIDTH,
-    TemplateResponseNamedFormField.JSON_PROPERTY_HEIGHT,
-    TemplateResponseNamedFormField.JSON_PROPERTY_REQUIRED,
-    TemplateResponseNamedFormField.JSON_PROPERTY_API_ID,
-    TemplateResponseNamedFormField.JSON_PROPERTY_GROUP,
-    TemplateResponseNamedFormField.JSON_PROPERTY_AVG_TEXT_LENGTH,
-    TemplateResponseNamedFormField.JSON_PROPERTY_IS_MULTILINE,
-    TemplateResponseNamedFormField.JSON_PROPERTY_ORIGINAL_FONT_SIZE,
-    TemplateResponseNamedFormField.JSON_PROPERTY_FONT_FAMILY
+    TemplateResponseDocumentStaticFieldBase.JSON_PROPERTY_TYPE,
+    TemplateResponseDocumentStaticFieldBase.JSON_PROPERTY_API_ID,
+    TemplateResponseDocumentStaticFieldBase.JSON_PROPERTY_NAME,
+    TemplateResponseDocumentStaticFieldBase.JSON_PROPERTY_SIGNER,
+    TemplateResponseDocumentStaticFieldBase.JSON_PROPERTY_X,
+    TemplateResponseDocumentStaticFieldBase.JSON_PROPERTY_Y,
+    TemplateResponseDocumentStaticFieldBase.JSON_PROPERTY_WIDTH,
+    TemplateResponseDocumentStaticFieldBase.JSON_PROPERTY_HEIGHT,
+    TemplateResponseDocumentStaticFieldBase.JSON_PROPERTY_REQUIRED,
+    TemplateResponseDocumentStaticFieldBase.JSON_PROPERTY_GROUP,
+    TemplateResponseDocumentStaticFieldBase.JSON_PROPERTY_FONT_SIZE
 })
 @JsonIgnoreProperties(ignoreUnknown=true)
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class TemplateResponseNamedFormField {
-  public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "type", visible = true)
+@JsonSubTypes({
+  @JsonSubTypes.Type(value = TemplateResponseDocumentStaticFieldCheckbox.class, name = "TemplateResponseDocumentStaticFieldCheckbox"),
+  @JsonSubTypes.Type(value = TemplateResponseDocumentStaticFieldDateSigned.class, name = "TemplateResponseDocumentStaticFieldDateSigned"),
+  @JsonSubTypes.Type(value = TemplateResponseDocumentStaticFieldDropdown.class, name = "TemplateResponseDocumentStaticFieldDropdown"),
+  @JsonSubTypes.Type(value = TemplateResponseDocumentStaticFieldHyperlink.class, name = "TemplateResponseDocumentStaticFieldHyperlink"),
+  @JsonSubTypes.Type(value = TemplateResponseDocumentStaticFieldInitials.class, name = "TemplateResponseDocumentStaticFieldInitials"),
+  @JsonSubTypes.Type(value = TemplateResponseDocumentStaticFieldRadio.class, name = "TemplateResponseDocumentStaticFieldRadio"),
+  @JsonSubTypes.Type(value = TemplateResponseDocumentStaticFieldSignature.class, name = "TemplateResponseDocumentStaticFieldSignature"),
+  @JsonSubTypes.Type(value = TemplateResponseDocumentStaticFieldText.class, name = "TemplateResponseDocumentStaticFieldText"),
+  @JsonSubTypes.Type(value = TemplateResponseDocumentStaticFieldCheckbox.class, name = "checkbox"),
+  @JsonSubTypes.Type(value = TemplateResponseDocumentStaticFieldDateSigned.class, name = "date_signed"),
+  @JsonSubTypes.Type(value = TemplateResponseDocumentStaticFieldDropdown.class, name = "dropdown"),
+  @JsonSubTypes.Type(value = TemplateResponseDocumentStaticFieldHyperlink.class, name = "hyperlink"),
+  @JsonSubTypes.Type(value = TemplateResponseDocumentStaticFieldInitials.class, name = "initials"),
+  @JsonSubTypes.Type(value = TemplateResponseDocumentStaticFieldRadio.class, name = "radio"),
+  @JsonSubTypes.Type(value = TemplateResponseDocumentStaticFieldSignature.class, name = "signature"),
+  @JsonSubTypes.Type(value = TemplateResponseDocumentStaticFieldText.class, name = "text"),
+})
 
+public class TemplateResponseDocumentStaticFieldBase {
   public static final String JSON_PROPERTY_TYPE = "type";
   private String type;
 
+  public static final String JSON_PROPERTY_API_ID = "api_id";
+  private String apiId;
+
+  public static final String JSON_PROPERTY_NAME = "name";
+  private String name;
+
   public static final String JSON_PROPERTY_SIGNER = "signer";
-  private String signer;
+  private String signer = "me_now";
 
   public static final String JSON_PROPERTY_X = "x";
   private Integer x;
@@ -78,53 +108,93 @@ public class TemplateResponseNamedFormField {
   public static final String JSON_PROPERTY_REQUIRED = "required";
   private Boolean required;
 
-  public static final String JSON_PROPERTY_API_ID = "api_id";
-  private String apiId;
-
   public static final String JSON_PROPERTY_GROUP = "group";
   private String group;
 
-  public static final String JSON_PROPERTY_AVG_TEXT_LENGTH = "avg_text_length";
-  private TemplateResponseFieldAvgTextLength avgTextLength;
+  public static final String JSON_PROPERTY_FONT_SIZE = "fontSize";
+  private Integer fontSize;
 
-  public static final String JSON_PROPERTY_IS_MULTILINE = "isMultiline";
-  private Boolean isMultiline;
-
-  public static final String JSON_PROPERTY_ORIGINAL_FONT_SIZE = "originalFontSize";
-  private Integer originalFontSize;
-
-  public static final String JSON_PROPERTY_FONT_FAMILY = "fontFamily";
-  private String fontFamily;
-
-  public TemplateResponseNamedFormField() { 
+  public TemplateResponseDocumentStaticFieldBase() { 
   }
 
   /**
    * Attempt to instantiate and hydrate a new instance of this class
    * @param jsonData String of JSON data representing target object
    */
-  static public TemplateResponseNamedFormField init(String jsonData) throws Exception {
-    return new ObjectMapper().readValue(jsonData, TemplateResponseNamedFormField.class);
+  static public TemplateResponseDocumentStaticFieldBase init(String jsonData) throws Exception {
+    return new ObjectMapper().readValue(jsonData, TemplateResponseDocumentStaticFieldBase.class);
   }
 
-  static public TemplateResponseNamedFormField init(HashMap data) throws Exception {
+  static public TemplateResponseDocumentStaticFieldBase init(HashMap data) throws Exception {
     return new ObjectMapper().readValue(
       new ObjectMapper().writeValueAsString(data),
-      TemplateResponseNamedFormField.class
+      TemplateResponseDocumentStaticFieldBase.class
     );
   }
 
-  public TemplateResponseNamedFormField name(String name) {
+  public TemplateResponseDocumentStaticFieldBase type(String type) {
+    this.type = type;
+    return this;
+  }
+
+   /**
+   * Get type
+   * @return type
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getType() {
+    return type;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setType(String type) {
+    this.type = type;
+  }
+
+
+  public TemplateResponseDocumentStaticFieldBase apiId(String apiId) {
+    this.apiId = apiId;
+    return this;
+  }
+
+   /**
+   * A unique id for the static field.
+   * @return apiId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "A unique id for the static field.")
+  @JsonProperty(JSON_PROPERTY_API_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getApiId() {
+    return apiId;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_API_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setApiId(String apiId) {
+    this.apiId = apiId;
+  }
+
+
+  public TemplateResponseDocumentStaticFieldBase name(String name) {
     this.name = name;
     return this;
   }
 
    /**
-   * The name of the Named Form Field.
+   * The name of the static field.
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The name of the Named Form Field.")
+  @ApiModelProperty(value = "The name of the static field.")
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -140,43 +210,17 @@ public class TemplateResponseNamedFormField {
   }
 
 
-  public TemplateResponseNamedFormField type(String type) {
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * The type of this Named Form Field. Only &#x60;text&#x60; and &#x60;checkbox&#x60; are currently supported.
-   * @return type
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The type of this Named Form Field. Only `text` and `checkbox` are currently supported.")
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getType() {
-    return type;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(String type) {
-    this.type = type;
-  }
-
-
-  public TemplateResponseNamedFormField signer(String signer) {
+  public TemplateResponseDocumentStaticFieldBase signer(String signer) {
     this.signer = signer;
     return this;
   }
 
    /**
-   * The signer of the Named Form Field.
+   * The signer of the Static Field.
    * @return signer
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The signer of the Named Form Field.")
+  @ApiModelProperty(value = "The signer of the Static Field.")
   @JsonProperty(JSON_PROPERTY_SIGNER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -192,17 +236,17 @@ public class TemplateResponseNamedFormField {
   }
 
 
-  public TemplateResponseNamedFormField x(Integer x) {
+  public TemplateResponseDocumentStaticFieldBase x(Integer x) {
     this.x = x;
     return this;
   }
 
    /**
-   * The horizontal offset in pixels for this form field.
+   * The horizontal offset in pixels for this static field.
    * @return x
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The horizontal offset in pixels for this form field.")
+  @ApiModelProperty(value = "The horizontal offset in pixels for this static field.")
   @JsonProperty(JSON_PROPERTY_X)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -218,17 +262,17 @@ public class TemplateResponseNamedFormField {
   }
 
 
-  public TemplateResponseNamedFormField y(Integer y) {
+  public TemplateResponseDocumentStaticFieldBase y(Integer y) {
     this.y = y;
     return this;
   }
 
    /**
-   * The vertical offset in pixels for this form field.
+   * The vertical offset in pixels for this static field.
    * @return y
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The vertical offset in pixels for this form field.")
+  @ApiModelProperty(value = "The vertical offset in pixels for this static field.")
   @JsonProperty(JSON_PROPERTY_Y)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -244,17 +288,17 @@ public class TemplateResponseNamedFormField {
   }
 
 
-  public TemplateResponseNamedFormField width(Integer width) {
+  public TemplateResponseDocumentStaticFieldBase width(Integer width) {
     this.width = width;
     return this;
   }
 
    /**
-   * The width in pixels of this form field.
+   * The width in pixels of this static field.
    * @return width
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The width in pixels of this form field.")
+  @ApiModelProperty(value = "The width in pixels of this static field.")
   @JsonProperty(JSON_PROPERTY_WIDTH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -270,17 +314,17 @@ public class TemplateResponseNamedFormField {
   }
 
 
-  public TemplateResponseNamedFormField height(Integer height) {
+  public TemplateResponseDocumentStaticFieldBase height(Integer height) {
     this.height = height;
     return this;
   }
 
    /**
-   * The height in pixels of this form field.
+   * The height in pixels of this static field.
    * @return height
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The height in pixels of this form field.")
+  @ApiModelProperty(value = "The height in pixels of this static field.")
   @JsonProperty(JSON_PROPERTY_HEIGHT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -296,7 +340,7 @@ public class TemplateResponseNamedFormField {
   }
 
 
-  public TemplateResponseNamedFormField required(Boolean required) {
+  public TemplateResponseDocumentStaticFieldBase required(Boolean required) {
     this.required = required;
     return this;
   }
@@ -322,33 +366,7 @@ public class TemplateResponseNamedFormField {
   }
 
 
-  public TemplateResponseNamedFormField apiId(String apiId) {
-    this.apiId = apiId;
-    return this;
-  }
-
-   /**
-   * The unique ID for this field.
-   * @return apiId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The unique ID for this field.")
-  @JsonProperty(JSON_PROPERTY_API_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getApiId() {
-    return apiId;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_API_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setApiId(String apiId) {
-    this.apiId = apiId;
-  }
-
-
-  public TemplateResponseNamedFormField group(String group) {
+  public TemplateResponseDocumentStaticFieldBase group(String group) {
     this.group = group;
     return this;
   }
@@ -374,112 +392,34 @@ public class TemplateResponseNamedFormField {
   }
 
 
-  public TemplateResponseNamedFormField avgTextLength(TemplateResponseFieldAvgTextLength avgTextLength) {
-    this.avgTextLength = avgTextLength;
+  public TemplateResponseDocumentStaticFieldBase fontSize(Integer fontSize) {
+    this.fontSize = fontSize;
     return this;
   }
 
    /**
-   * Get avgTextLength
-   * @return avgTextLength
+   * Final font size used by this form field.
+   * @return fontSize
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_AVG_TEXT_LENGTH)
+  @ApiModelProperty(value = "Final font size used by this form field.")
+  @JsonProperty(JSON_PROPERTY_FONT_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public TemplateResponseFieldAvgTextLength getAvgTextLength() {
-    return avgTextLength;
+  public Integer getFontSize() {
+    return fontSize;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_AVG_TEXT_LENGTH)
+  @JsonProperty(JSON_PROPERTY_FONT_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAvgTextLength(TemplateResponseFieldAvgTextLength avgTextLength) {
-    this.avgTextLength = avgTextLength;
-  }
-
-
-  public TemplateResponseNamedFormField isMultiline(Boolean isMultiline) {
-    this.isMultiline = isMultiline;
-    return this;
-  }
-
-   /**
-   * Whether this form field is multiline text.
-   * @return isMultiline
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Whether this form field is multiline text.")
-  @JsonProperty(JSON_PROPERTY_IS_MULTILINE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Boolean getIsMultiline() {
-    return isMultiline;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IS_MULTILINE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIsMultiline(Boolean isMultiline) {
-    this.isMultiline = isMultiline;
-  }
-
-
-  public TemplateResponseNamedFormField originalFontSize(Integer originalFontSize) {
-    this.originalFontSize = originalFontSize;
-    return this;
-  }
-
-   /**
-   * Original font size used in this form field&#39;s text.
-   * @return originalFontSize
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Original font size used in this form field's text.")
-  @JsonProperty(JSON_PROPERTY_ORIGINAL_FONT_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getOriginalFontSize() {
-    return originalFontSize;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ORIGINAL_FONT_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOriginalFontSize(Integer originalFontSize) {
-    this.originalFontSize = originalFontSize;
-  }
-
-
-  public TemplateResponseNamedFormField fontFamily(String fontFamily) {
-    this.fontFamily = fontFamily;
-    return this;
-  }
-
-   /**
-   * Font family used in this form field&#39;s text.
-   * @return fontFamily
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Font family used in this form field's text.")
-  @JsonProperty(JSON_PROPERTY_FONT_FAMILY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getFontFamily() {
-    return fontFamily;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_FONT_FAMILY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFontFamily(String fontFamily) {
-    this.fontFamily = fontFamily;
+  public void setFontSize(Integer fontSize) {
+    this.fontSize = fontSize;
   }
 
 
   /**
-   * Return true if this TemplateResponseNamedFormField object is equal to o.
+   * Return true if this TemplateResponseDocumentStaticFieldBase object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -489,46 +429,40 @@ public class TemplateResponseNamedFormField {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    TemplateResponseNamedFormField templateResponseNamedFormField = (TemplateResponseNamedFormField) o;
-    return Objects.equals(this.name, templateResponseNamedFormField.name) &&
-        Objects.equals(this.type, templateResponseNamedFormField.type) &&
-        Objects.equals(this.signer, templateResponseNamedFormField.signer) &&
-        Objects.equals(this.x, templateResponseNamedFormField.x) &&
-        Objects.equals(this.y, templateResponseNamedFormField.y) &&
-        Objects.equals(this.width, templateResponseNamedFormField.width) &&
-        Objects.equals(this.height, templateResponseNamedFormField.height) &&
-        Objects.equals(this.required, templateResponseNamedFormField.required) &&
-        Objects.equals(this.apiId, templateResponseNamedFormField.apiId) &&
-        Objects.equals(this.group, templateResponseNamedFormField.group) &&
-        Objects.equals(this.avgTextLength, templateResponseNamedFormField.avgTextLength) &&
-        Objects.equals(this.isMultiline, templateResponseNamedFormField.isMultiline) &&
-        Objects.equals(this.originalFontSize, templateResponseNamedFormField.originalFontSize) &&
-        Objects.equals(this.fontFamily, templateResponseNamedFormField.fontFamily);
+    TemplateResponseDocumentStaticFieldBase templateResponseDocumentStaticFieldBase = (TemplateResponseDocumentStaticFieldBase) o;
+    return Objects.equals(this.type, templateResponseDocumentStaticFieldBase.type) &&
+        Objects.equals(this.apiId, templateResponseDocumentStaticFieldBase.apiId) &&
+        Objects.equals(this.name, templateResponseDocumentStaticFieldBase.name) &&
+        Objects.equals(this.signer, templateResponseDocumentStaticFieldBase.signer) &&
+        Objects.equals(this.x, templateResponseDocumentStaticFieldBase.x) &&
+        Objects.equals(this.y, templateResponseDocumentStaticFieldBase.y) &&
+        Objects.equals(this.width, templateResponseDocumentStaticFieldBase.width) &&
+        Objects.equals(this.height, templateResponseDocumentStaticFieldBase.height) &&
+        Objects.equals(this.required, templateResponseDocumentStaticFieldBase.required) &&
+        Objects.equals(this.group, templateResponseDocumentStaticFieldBase.group) &&
+        Objects.equals(this.fontSize, templateResponseDocumentStaticFieldBase.fontSize);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, type, signer, x, y, width, height, required, apiId, group, avgTextLength, isMultiline, originalFontSize, fontFamily);
+    return Objects.hash(type, apiId, name, signer, x, y, width, height, required, group, fontSize);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class TemplateResponseNamedFormField {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("class TemplateResponseDocumentStaticFieldBase {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    apiId: ").append(toIndentedString(apiId)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    signer: ").append(toIndentedString(signer)).append("\n");
     sb.append("    x: ").append(toIndentedString(x)).append("\n");
     sb.append("    y: ").append(toIndentedString(y)).append("\n");
     sb.append("    width: ").append(toIndentedString(width)).append("\n");
     sb.append("    height: ").append(toIndentedString(height)).append("\n");
     sb.append("    required: ").append(toIndentedString(required)).append("\n");
-    sb.append("    apiId: ").append(toIndentedString(apiId)).append("\n");
     sb.append("    group: ").append(toIndentedString(group)).append("\n");
-    sb.append("    avgTextLength: ").append(toIndentedString(avgTextLength)).append("\n");
-    sb.append("    isMultiline: ").append(toIndentedString(isMultiline)).append("\n");
-    sb.append("    originalFontSize: ").append(toIndentedString(originalFontSize)).append("\n");
-    sb.append("    fontFamily: ").append(toIndentedString(fontFamily)).append("\n");
+    sb.append("    fontSize: ").append(toIndentedString(fontSize)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -537,25 +471,6 @@ public class TemplateResponseNamedFormField {
     Map<String, Object> map = new HashMap<>();
     boolean fileTypeFound = false;
     try {
-    if (name != null) {
-        if (isFileTypeOrListOfFiles(name)) {
-            fileTypeFound = true;
-        }
-
-        if (name.getClass().equals(java.io.File.class) ||
-            name.getClass().equals(Integer.class) ||
-            name.getClass().equals(String.class) ||
-            name.getClass().isEnum()) {
-            map.put("name", name);
-        } else if (isListOfFile(name)) {
-            for(int i = 0; i< getListSize(name); i++) {
-                map.put("name[" + i + "]", getFromList(name, i));
-            }
-        }
-        else {
-            map.put("name", JSON.getDefault().getMapper().writeValueAsString(name));
-        }
-    }
     if (type != null) {
         if (isFileTypeOrListOfFiles(type)) {
             fileTypeFound = true;
@@ -573,6 +488,44 @@ public class TemplateResponseNamedFormField {
         }
         else {
             map.put("type", JSON.getDefault().getMapper().writeValueAsString(type));
+        }
+    }
+    if (apiId != null) {
+        if (isFileTypeOrListOfFiles(apiId)) {
+            fileTypeFound = true;
+        }
+
+        if (apiId.getClass().equals(java.io.File.class) ||
+            apiId.getClass().equals(Integer.class) ||
+            apiId.getClass().equals(String.class) ||
+            apiId.getClass().isEnum()) {
+            map.put("api_id", apiId);
+        } else if (isListOfFile(apiId)) {
+            for(int i = 0; i< getListSize(apiId); i++) {
+                map.put("api_id[" + i + "]", getFromList(apiId, i));
+            }
+        }
+        else {
+            map.put("api_id", JSON.getDefault().getMapper().writeValueAsString(apiId));
+        }
+    }
+    if (name != null) {
+        if (isFileTypeOrListOfFiles(name)) {
+            fileTypeFound = true;
+        }
+
+        if (name.getClass().equals(java.io.File.class) ||
+            name.getClass().equals(Integer.class) ||
+            name.getClass().equals(String.class) ||
+            name.getClass().isEnum()) {
+            map.put("name", name);
+        } else if (isListOfFile(name)) {
+            for(int i = 0; i< getListSize(name); i++) {
+                map.put("name[" + i + "]", getFromList(name, i));
+            }
+        }
+        else {
+            map.put("name", JSON.getDefault().getMapper().writeValueAsString(name));
         }
     }
     if (signer != null) {
@@ -689,25 +642,6 @@ public class TemplateResponseNamedFormField {
             map.put("required", JSON.getDefault().getMapper().writeValueAsString(required));
         }
     }
-    if (apiId != null) {
-        if (isFileTypeOrListOfFiles(apiId)) {
-            fileTypeFound = true;
-        }
-
-        if (apiId.getClass().equals(java.io.File.class) ||
-            apiId.getClass().equals(Integer.class) ||
-            apiId.getClass().equals(String.class) ||
-            apiId.getClass().isEnum()) {
-            map.put("api_id", apiId);
-        } else if (isListOfFile(apiId)) {
-            for(int i = 0; i< getListSize(apiId); i++) {
-                map.put("api_id[" + i + "]", getFromList(apiId, i));
-            }
-        }
-        else {
-            map.put("api_id", JSON.getDefault().getMapper().writeValueAsString(apiId));
-        }
-    }
     if (group != null) {
         if (isFileTypeOrListOfFiles(group)) {
             fileTypeFound = true;
@@ -727,80 +661,23 @@ public class TemplateResponseNamedFormField {
             map.put("group", JSON.getDefault().getMapper().writeValueAsString(group));
         }
     }
-    if (avgTextLength != null) {
-        if (isFileTypeOrListOfFiles(avgTextLength)) {
+    if (fontSize != null) {
+        if (isFileTypeOrListOfFiles(fontSize)) {
             fileTypeFound = true;
         }
 
-        if (avgTextLength.getClass().equals(java.io.File.class) ||
-            avgTextLength.getClass().equals(Integer.class) ||
-            avgTextLength.getClass().equals(String.class) ||
-            avgTextLength.getClass().isEnum()) {
-            map.put("avg_text_length", avgTextLength);
-        } else if (isListOfFile(avgTextLength)) {
-            for(int i = 0; i< getListSize(avgTextLength); i++) {
-                map.put("avg_text_length[" + i + "]", getFromList(avgTextLength, i));
+        if (fontSize.getClass().equals(java.io.File.class) ||
+            fontSize.getClass().equals(Integer.class) ||
+            fontSize.getClass().equals(String.class) ||
+            fontSize.getClass().isEnum()) {
+            map.put("fontSize", fontSize);
+        } else if (isListOfFile(fontSize)) {
+            for(int i = 0; i< getListSize(fontSize); i++) {
+                map.put("fontSize[" + i + "]", getFromList(fontSize, i));
             }
         }
         else {
-            map.put("avg_text_length", JSON.getDefault().getMapper().writeValueAsString(avgTextLength));
-        }
-    }
-    if (isMultiline != null) {
-        if (isFileTypeOrListOfFiles(isMultiline)) {
-            fileTypeFound = true;
-        }
-
-        if (isMultiline.getClass().equals(java.io.File.class) ||
-            isMultiline.getClass().equals(Integer.class) ||
-            isMultiline.getClass().equals(String.class) ||
-            isMultiline.getClass().isEnum()) {
-            map.put("isMultiline", isMultiline);
-        } else if (isListOfFile(isMultiline)) {
-            for(int i = 0; i< getListSize(isMultiline); i++) {
-                map.put("isMultiline[" + i + "]", getFromList(isMultiline, i));
-            }
-        }
-        else {
-            map.put("isMultiline", JSON.getDefault().getMapper().writeValueAsString(isMultiline));
-        }
-    }
-    if (originalFontSize != null) {
-        if (isFileTypeOrListOfFiles(originalFontSize)) {
-            fileTypeFound = true;
-        }
-
-        if (originalFontSize.getClass().equals(java.io.File.class) ||
-            originalFontSize.getClass().equals(Integer.class) ||
-            originalFontSize.getClass().equals(String.class) ||
-            originalFontSize.getClass().isEnum()) {
-            map.put("originalFontSize", originalFontSize);
-        } else if (isListOfFile(originalFontSize)) {
-            for(int i = 0; i< getListSize(originalFontSize); i++) {
-                map.put("originalFontSize[" + i + "]", getFromList(originalFontSize, i));
-            }
-        }
-        else {
-            map.put("originalFontSize", JSON.getDefault().getMapper().writeValueAsString(originalFontSize));
-        }
-    }
-    if (fontFamily != null) {
-        if (isFileTypeOrListOfFiles(fontFamily)) {
-            fileTypeFound = true;
-        }
-
-        if (fontFamily.getClass().equals(java.io.File.class) ||
-            fontFamily.getClass().equals(Integer.class) ||
-            fontFamily.getClass().equals(String.class) ||
-            fontFamily.getClass().isEnum()) {
-            map.put("fontFamily", fontFamily);
-        } else if (isListOfFile(fontFamily)) {
-            for(int i = 0; i< getListSize(fontFamily); i++) {
-                map.put("fontFamily[" + i + "]", getFromList(fontFamily, i));
-            }
-        }
-        else {
-            map.put("fontFamily", JSON.getDefault().getMapper().writeValueAsString(fontFamily));
+            map.put("fontSize", JSON.getDefault().getMapper().writeValueAsString(fontSize));
         }
     }
     } catch (Exception e) {
@@ -841,5 +718,27 @@ public class TemplateResponseNamedFormField {
     return o.toString().replace("\n", "\n    ");
   }
 
+static {
+  // Initialize and register the discriminator mappings.
+  Map<String, Class<?>> mappings = new HashMap<String, Class<?>>();
+  mappings.put("TemplateResponseDocumentStaticFieldCheckbox", TemplateResponseDocumentStaticFieldCheckbox.class);
+  mappings.put("TemplateResponseDocumentStaticFieldDateSigned", TemplateResponseDocumentStaticFieldDateSigned.class);
+  mappings.put("TemplateResponseDocumentStaticFieldDropdown", TemplateResponseDocumentStaticFieldDropdown.class);
+  mappings.put("TemplateResponseDocumentStaticFieldHyperlink", TemplateResponseDocumentStaticFieldHyperlink.class);
+  mappings.put("TemplateResponseDocumentStaticFieldInitials", TemplateResponseDocumentStaticFieldInitials.class);
+  mappings.put("TemplateResponseDocumentStaticFieldRadio", TemplateResponseDocumentStaticFieldRadio.class);
+  mappings.put("TemplateResponseDocumentStaticFieldSignature", TemplateResponseDocumentStaticFieldSignature.class);
+  mappings.put("TemplateResponseDocumentStaticFieldText", TemplateResponseDocumentStaticFieldText.class);
+  mappings.put("checkbox", TemplateResponseDocumentStaticFieldCheckbox.class);
+  mappings.put("date_signed", TemplateResponseDocumentStaticFieldDateSigned.class);
+  mappings.put("dropdown", TemplateResponseDocumentStaticFieldDropdown.class);
+  mappings.put("hyperlink", TemplateResponseDocumentStaticFieldHyperlink.class);
+  mappings.put("initials", TemplateResponseDocumentStaticFieldInitials.class);
+  mappings.put("radio", TemplateResponseDocumentStaticFieldRadio.class);
+  mappings.put("signature", TemplateResponseDocumentStaticFieldSignature.class);
+  mappings.put("text", TemplateResponseDocumentStaticFieldText.class);
+  mappings.put("TemplateResponseDocumentStaticFieldBase", TemplateResponseDocumentStaticFieldBase.class);
+  JSON.registerDiscriminator(TemplateResponseDocumentStaticFieldBase.class, "type", mappings);
+}
 }
 
