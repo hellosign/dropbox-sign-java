@@ -1,3 +1,4 @@
+.github/workflows/maven.yml
 .gitignore
 .travis.yml
 README.md
@@ -193,7 +194,6 @@ src/main/java/com/dropbox/sign/ApiClient.java
 src/main/java/com/dropbox/sign/ApiException.java
 src/main/java/com/dropbox/sign/ApiResponse.java
 src/main/java/com/dropbox/sign/Configuration.java
-src/main/java/com/dropbox/sign/CustomInstantDeserializer.java
 src/main/java/com/dropbox/sign/EventCallbackHelper.java
 src/main/java/com/dropbox/sign/JSON.java
 src/main/java/com/dropbox/sign/JavaTimeFormatter.java

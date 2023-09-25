@@ -158,7 +158,8 @@ public class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{{#vendorExtens
     {{^vendorExtensions.x-is-jackson-optional-nullable}}
     {{^required}}
     if (this.{{name}} == null) {
-      this.{{name}} = {{{defaultValue}}};
+      {{! copied from: https://github.com/OpenAPITools/openapi-generator/blob/5f0d7053e4c18433a23cb1414d9d51a07764848d/modules/openapi-generator/src/main/resources/Java/libraries/jersey2/pojo.mustache#L150 }}
+      this.{{name}} = {{{defaultValue}}}{{^defaultValue}}new {{#uniqueItems}}LinkedHashSet{{/uniqueItems}}{{^uniqueItems}}ArrayList{{/uniqueItems}}<>(){{/defaultValue}};
     }
     {{/required}}
     this.{{name}}.add({{name}}Item);
