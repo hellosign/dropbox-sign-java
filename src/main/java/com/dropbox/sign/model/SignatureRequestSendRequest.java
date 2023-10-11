@@ -65,6 +65,7 @@ import com.dropbox.sign.ApiException;
     SignatureRequestSendRequest.JSON_PROPERTY_FORM_FIELDS_PER_DOCUMENT,
     SignatureRequestSendRequest.JSON_PROPERTY_HIDE_TEXT_TAGS,
     SignatureRequestSendRequest.JSON_PROPERTY_IS_QUALIFIED_SIGNATURE,
+    SignatureRequestSendRequest.JSON_PROPERTY_IS_EID,
     SignatureRequestSendRequest.JSON_PROPERTY_MESSAGE,
     SignatureRequestSendRequest.JSON_PROPERTY_METADATA,
     SignatureRequestSendRequest.JSON_PROPERTY_SIGNING_OPTIONS,
@@ -125,6 +126,9 @@ public class SignatureRequestSendRequest {
 
   public static final String JSON_PROPERTY_IS_QUALIFIED_SIGNATURE = "is_qualified_signature";
   private Boolean isQualifiedSignature = false;
+
+  public static final String JSON_PROPERTY_IS_EID = "is_eid";
+  private Boolean isEid = false;
 
   public static final String JSON_PROPERTY_MESSAGE = "message";
   private String message;
@@ -595,11 +599,11 @@ public class SignatureRequestSendRequest {
   }
 
    /**
-   * The fields that should appear on the document, expressed as an array of objects. (We&#39;re currently fixing a bug where this property only accepts a two-dimensional array. You can read about it here: [Using Form Fields per Document](/docs/openapi/form-fields-per-document).)  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use &#x60;SubFormFieldsPerDocumentText&#x60; * Dropdown Field use &#x60;SubFormFieldsPerDocumentDropdown&#x60; * Hyperlink Field use &#x60;SubFormFieldsPerDocumentHyperlink&#x60; * Checkbox Field use &#x60;SubFormFieldsPerDocumentCheckbox&#x60; * Radio Field use &#x60;SubFormFieldsPerDocumentRadio&#x60; * Signature Field use &#x60;SubFormFieldsPerDocumentSignature&#x60; * Date Signed Field use &#x60;SubFormFieldsPerDocumentDateSigned&#x60; * Initials Field use &#x60;SubFormFieldsPerDocumentInitials&#x60; * Text Merge Field use &#x60;SubFormFieldsPerDocumentTextMerge&#x60; * Checkbox Merge Field use &#x60;SubFormFieldsPerDocumentCheckboxMerge&#x60;
+   * The fields that should appear on the document, expressed as an array of objects. (For more details you can read about it here: [Using Form Fields per Document](/docs/openapi/form-fields-per-document).)  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use &#x60;SubFormFieldsPerDocumentText&#x60; * Dropdown Field use &#x60;SubFormFieldsPerDocumentDropdown&#x60; * Hyperlink Field use &#x60;SubFormFieldsPerDocumentHyperlink&#x60; * Checkbox Field use &#x60;SubFormFieldsPerDocumentCheckbox&#x60; * Radio Field use &#x60;SubFormFieldsPerDocumentRadio&#x60; * Signature Field use &#x60;SubFormFieldsPerDocumentSignature&#x60; * Date Signed Field use &#x60;SubFormFieldsPerDocumentDateSigned&#x60; * Initials Field use &#x60;SubFormFieldsPerDocumentInitials&#x60; * Text Merge Field use &#x60;SubFormFieldsPerDocumentTextMerge&#x60; * Checkbox Merge Field use &#x60;SubFormFieldsPerDocumentCheckboxMerge&#x60;
    * @return formFieldsPerDocument
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The fields that should appear on the document, expressed as an array of objects. (We're currently fixing a bug where this property only accepts a two-dimensional array. You can read about it here: [Using Form Fields per Document](/docs/openapi/form-fields-per-document).)  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use `SubFormFieldsPerDocumentText` * Dropdown Field use `SubFormFieldsPerDocumentDropdown` * Hyperlink Field use `SubFormFieldsPerDocumentHyperlink` * Checkbox Field use `SubFormFieldsPerDocumentCheckbox` * Radio Field use `SubFormFieldsPerDocumentRadio` * Signature Field use `SubFormFieldsPerDocumentSignature` * Date Signed Field use `SubFormFieldsPerDocumentDateSigned` * Initials Field use `SubFormFieldsPerDocumentInitials` * Text Merge Field use `SubFormFieldsPerDocumentTextMerge` * Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`")
+  @ApiModelProperty(value = "The fields that should appear on the document, expressed as an array of objects. (For more details you can read about it here: [Using Form Fields per Document](/docs/openapi/form-fields-per-document).)  **NOTE**: Fields like **text**, **dropdown**, **checkbox**, **radio**, and **hyperlink** have additional required and optional parameters. Check out the list of [additional parameters](/api/reference/constants/#form-fields-per-document) for these field types.  * Text Field use `SubFormFieldsPerDocumentText` * Dropdown Field use `SubFormFieldsPerDocumentDropdown` * Hyperlink Field use `SubFormFieldsPerDocumentHyperlink` * Checkbox Field use `SubFormFieldsPerDocumentCheckbox` * Radio Field use `SubFormFieldsPerDocumentRadio` * Signature Field use `SubFormFieldsPerDocumentSignature` * Date Signed Field use `SubFormFieldsPerDocumentDateSigned` * Initials Field use `SubFormFieldsPerDocumentInitials` * Text Merge Field use `SubFormFieldsPerDocumentTextMerge` * Checkbox Merge Field use `SubFormFieldsPerDocumentCheckboxMerge`")
   @JsonProperty(JSON_PROPERTY_FORM_FIELDS_PER_DOCUMENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -649,7 +653,9 @@ public class SignatureRequestSendRequest {
    /**
    * Send with a value of &#x60;true&#x60; if you wish to enable [Qualified Electronic Signatures](https://www.hellosign.com/features/qualified-electronic-signatures) (QES), which requires a face-to-face call to verify the signer&#39;s identity.&lt;br&gt; **Note**: QES is only available on the Premium API plan as an add-on purchase. Cannot be used in &#x60;test_mode&#x60;. Only works on requests with one signer.
    * @return isQualifiedSignature
+   * @deprecated
   **/
+  @Deprecated
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Send with a value of `true` if you wish to enable [Qualified Electronic Signatures](https://www.hellosign.com/features/qualified-electronic-signatures) (QES), which requires a face-to-face call to verify the signer's identity.<br> **Note**: QES is only available on the Premium API plan as an add-on purchase. Cannot be used in `test_mode`. Only works on requests with one signer.")
   @JsonProperty(JSON_PROPERTY_IS_QUALIFIED_SIGNATURE)
@@ -664,6 +670,32 @@ public class SignatureRequestSendRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIsQualifiedSignature(Boolean isQualifiedSignature) {
     this.isQualifiedSignature = isQualifiedSignature;
+  }
+
+
+  public SignatureRequestSendRequest isEid(Boolean isEid) {
+    this.isEid = isEid;
+    return this;
+  }
+
+   /**
+   * Send with a value of &#x60;true&#x60; if you wish to enable [electronic identification (eID)](https://www.hellosign.com/features/electronic-id), which requires the signer to verify their identity with an eID provider to sign a document.&lt;br&gt; **Note**: eID is only available on the Premium API plan. Cannot be used in &#x60;test_mode&#x60;. Only works on requests with one signer.
+   * @return isEid
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Send with a value of `true` if you wish to enable [electronic identification (eID)](https://www.hellosign.com/features/electronic-id), which requires the signer to verify their identity with an eID provider to sign a document.<br> **Note**: eID is only available on the Premium API plan. Cannot be used in `test_mode`. Only works on requests with one signer.")
+  @JsonProperty(JSON_PROPERTY_IS_EID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getIsEid() {
+    return isEid;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_IS_EID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsEid(Boolean isEid) {
+    this.isEid = isEid;
   }
 
 
@@ -937,6 +969,7 @@ public class SignatureRequestSendRequest {
         Objects.equals(this.formFieldsPerDocument, signatureRequestSendRequest.formFieldsPerDocument) &&
         Objects.equals(this.hideTextTags, signatureRequestSendRequest.hideTextTags) &&
         Objects.equals(this.isQualifiedSignature, signatureRequestSendRequest.isQualifiedSignature) &&
+        Objects.equals(this.isEid, signatureRequestSendRequest.isEid) &&
         Objects.equals(this.message, signatureRequestSendRequest.message) &&
         Objects.equals(this.metadata, signatureRequestSendRequest.metadata) &&
         Objects.equals(this.signingOptions, signatureRequestSendRequest.signingOptions) &&
@@ -950,7 +983,7 @@ public class SignatureRequestSendRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(files, fileUrls, signers, groupedSigners, allowDecline, allowReassign, attachments, ccEmailAddresses, clientId, customFields, fieldOptions, formFieldGroups, formFieldRules, formFieldsPerDocument, hideTextTags, isQualifiedSignature, message, metadata, signingOptions, signingRedirectUrl, subject, testMode, title, useTextTags, expiresAt);
+    return Objects.hash(files, fileUrls, signers, groupedSigners, allowDecline, allowReassign, attachments, ccEmailAddresses, clientId, customFields, fieldOptions, formFieldGroups, formFieldRules, formFieldsPerDocument, hideTextTags, isQualifiedSignature, isEid, message, metadata, signingOptions, signingRedirectUrl, subject, testMode, title, useTextTags, expiresAt);
   }
 
   @Override
@@ -973,6 +1006,7 @@ public class SignatureRequestSendRequest {
     sb.append("    formFieldsPerDocument: ").append(toIndentedString(formFieldsPerDocument)).append("\n");
     sb.append("    hideTextTags: ").append(toIndentedString(hideTextTags)).append("\n");
     sb.append("    isQualifiedSignature: ").append(toIndentedString(isQualifiedSignature)).append("\n");
+    sb.append("    isEid: ").append(toIndentedString(isEid)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    signingOptions: ").append(toIndentedString(signingOptions)).append("\n");
@@ -1292,6 +1326,25 @@ public class SignatureRequestSendRequest {
         }
         else {
             map.put("is_qualified_signature", JSON.getDefault().getMapper().writeValueAsString(isQualifiedSignature));
+        }
+    }
+    if (isEid != null) {
+        if (isFileTypeOrListOfFiles(isEid)) {
+            fileTypeFound = true;
+        }
+
+        if (isEid.getClass().equals(java.io.File.class) ||
+            isEid.getClass().equals(Integer.class) ||
+            isEid.getClass().equals(String.class) ||
+            isEid.getClass().isEnum()) {
+            map.put("is_eid", isEid);
+        } else if (isListOfFile(isEid)) {
+            for(int i = 0; i< getListSize(isEid); i++) {
+                map.put("is_eid[" + i + "]", getFromList(isEid, i));
+            }
+        }
+        else {
+            map.put("is_eid", JSON.getDefault().getMapper().writeValueAsString(isEid));
         }
     }
     if (message != null) {
