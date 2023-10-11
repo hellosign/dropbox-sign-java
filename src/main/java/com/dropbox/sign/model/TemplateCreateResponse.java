@@ -35,72 +35,71 @@ import com.dropbox.sign.JSON;
 
 import com.dropbox.sign.ApiException;
 /**
- * Contains template id
+ * TemplateCreateResponse
  */
-@ApiModel(description = "Contains template id")
 @JsonPropertyOrder({
-    TemplateUpdateFilesResponseTemplate.JSON_PROPERTY_TEMPLATE_ID,
-    TemplateUpdateFilesResponseTemplate.JSON_PROPERTY_WARNINGS
+    TemplateCreateResponse.JSON_PROPERTY_TEMPLATE,
+    TemplateCreateResponse.JSON_PROPERTY_WARNINGS
 })
 @JsonIgnoreProperties(ignoreUnknown=true)
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class TemplateUpdateFilesResponseTemplate {
-  public static final String JSON_PROPERTY_TEMPLATE_ID = "template_id";
-  private String templateId;
+public class TemplateCreateResponse {
+  public static final String JSON_PROPERTY_TEMPLATE = "template";
+  private TemplateCreateResponse template;
 
   public static final String JSON_PROPERTY_WARNINGS = "warnings";
   private List<WarningResponse> warnings = null;
 
-  public TemplateUpdateFilesResponseTemplate() { 
+  public TemplateCreateResponse() { 
   }
 
   /**
    * Attempt to instantiate and hydrate a new instance of this class
    * @param jsonData String of JSON data representing target object
    */
-  static public TemplateUpdateFilesResponseTemplate init(String jsonData) throws Exception {
-    return new ObjectMapper().readValue(jsonData, TemplateUpdateFilesResponseTemplate.class);
+  static public TemplateCreateResponse init(String jsonData) throws Exception {
+    return new ObjectMapper().readValue(jsonData, TemplateCreateResponse.class);
   }
 
-  static public TemplateUpdateFilesResponseTemplate init(HashMap data) throws Exception {
+  static public TemplateCreateResponse init(HashMap data) throws Exception {
     return new ObjectMapper().readValue(
       new ObjectMapper().writeValueAsString(data),
-      TemplateUpdateFilesResponseTemplate.class
+      TemplateCreateResponse.class
     );
   }
 
-  public TemplateUpdateFilesResponseTemplate templateId(String templateId) {
-    this.templateId = templateId;
+  public TemplateCreateResponse template(TemplateCreateResponse template) {
+    this.template = template;
     return this;
   }
 
    /**
-   * The id of the Template.
-   * @return templateId
+   * Get template
+   * @return template
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The id of the Template.")
-  @JsonProperty(JSON_PROPERTY_TEMPLATE_ID)
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_TEMPLATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getTemplateId() {
-    return templateId;
+  public TemplateCreateResponse getTemplate() {
+    return template;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TEMPLATE_ID)
+  @JsonProperty(JSON_PROPERTY_TEMPLATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTemplateId(String templateId) {
-    this.templateId = templateId;
+  public void setTemplate(TemplateCreateResponse template) {
+    this.template = template;
   }
 
 
-  public TemplateUpdateFilesResponseTemplate warnings(List<WarningResponse> warnings) {
+  public TemplateCreateResponse warnings(List<WarningResponse> warnings) {
     this.warnings = warnings;
     return this;
   }
 
-  public TemplateUpdateFilesResponseTemplate addWarningsItem(WarningResponse warningsItem) {
+  public TemplateCreateResponse addWarningsItem(WarningResponse warningsItem) {
     if (this.warnings == null) {
       this.warnings = new ArrayList<>();
     }
@@ -111,9 +110,7 @@ public class TemplateUpdateFilesResponseTemplate {
    /**
    * A list of warnings.
    * @return warnings
-   * @deprecated
   **/
-  @Deprecated
   @javax.annotation.Nullable
   @ApiModelProperty(value = "A list of warnings.")
   @JsonProperty(JSON_PROPERTY_WARNINGS)
@@ -132,7 +129,7 @@ public class TemplateUpdateFilesResponseTemplate {
 
 
   /**
-   * Return true if this TemplateUpdateFilesResponseTemplate object is equal to o.
+   * Return true if this TemplateCreateResponse object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -142,21 +139,21 @@ public class TemplateUpdateFilesResponseTemplate {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    TemplateUpdateFilesResponseTemplate templateUpdateFilesResponseTemplate = (TemplateUpdateFilesResponseTemplate) o;
-    return Objects.equals(this.templateId, templateUpdateFilesResponseTemplate.templateId) &&
-        Objects.equals(this.warnings, templateUpdateFilesResponseTemplate.warnings);
+    TemplateCreateResponse templateCreateResponse = (TemplateCreateResponse) o;
+    return Objects.equals(this.template, templateCreateResponse.template) &&
+        Objects.equals(this.warnings, templateCreateResponse.warnings);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(templateId, warnings);
+    return Objects.hash(template, warnings);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class TemplateUpdateFilesResponseTemplate {\n");
-    sb.append("    templateId: ").append(toIndentedString(templateId)).append("\n");
+    sb.append("class TemplateCreateResponse {\n");
+    sb.append("    template: ").append(toIndentedString(template)).append("\n");
     sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -166,23 +163,23 @@ public class TemplateUpdateFilesResponseTemplate {
     Map<String, Object> map = new HashMap<>();
     boolean fileTypeFound = false;
     try {
-    if (templateId != null) {
-        if (isFileTypeOrListOfFiles(templateId)) {
+    if (template != null) {
+        if (isFileTypeOrListOfFiles(template)) {
             fileTypeFound = true;
         }
 
-        if (templateId.getClass().equals(java.io.File.class) ||
-            templateId.getClass().equals(Integer.class) ||
-            templateId.getClass().equals(String.class) ||
-            templateId.getClass().isEnum()) {
-            map.put("template_id", templateId);
-        } else if (isListOfFile(templateId)) {
-            for(int i = 0; i< getListSize(templateId); i++) {
-                map.put("template_id[" + i + "]", getFromList(templateId, i));
+        if (template.getClass().equals(java.io.File.class) ||
+            template.getClass().equals(Integer.class) ||
+            template.getClass().equals(String.class) ||
+            template.getClass().isEnum()) {
+            map.put("template", template);
+        } else if (isListOfFile(template)) {
+            for(int i = 0; i< getListSize(template); i++) {
+                map.put("template[" + i + "]", getFromList(template, i));
             }
         }
         else {
-            map.put("template_id", JSON.getDefault().getMapper().writeValueAsString(templateId));
+            map.put("template", JSON.getDefault().getMapper().writeValueAsString(template));
         }
     }
     if (warnings != null) {

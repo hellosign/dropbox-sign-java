@@ -97,6 +97,7 @@ docs/SubFormFieldsPerDocumentCheckbox.md
 docs/SubFormFieldsPerDocumentCheckboxMerge.md
 docs/SubFormFieldsPerDocumentDateSigned.md
 docs/SubFormFieldsPerDocumentDropdown.md
+docs/SubFormFieldsPerDocumentFontEnum.md
 docs/SubFormFieldsPerDocumentHyperlink.md
 docs/SubFormFieldsPerDocumentInitials.md
 docs/SubFormFieldsPerDocumentRadio.md
@@ -136,6 +137,9 @@ docs/TemplateApi.md
 docs/TemplateCreateEmbeddedDraftRequest.md
 docs/TemplateCreateEmbeddedDraftResponse.md
 docs/TemplateCreateEmbeddedDraftResponseTemplate.md
+docs/TemplateCreateRequest.md
+docs/TemplateCreateResponse.md
+docs/TemplateCreateResponseTemplate.md
 docs/TemplateEditResponse.md
 docs/TemplateGetResponse.md
 docs/TemplateListResponse.md
@@ -303,6 +307,7 @@ src/main/java/com/dropbox/sign/model/SubFormFieldsPerDocumentCheckbox.java
 src/main/java/com/dropbox/sign/model/SubFormFieldsPerDocumentCheckboxMerge.java
 src/main/java/com/dropbox/sign/model/SubFormFieldsPerDocumentDateSigned.java
 src/main/java/com/dropbox/sign/model/SubFormFieldsPerDocumentDropdown.java
+src/main/java/com/dropbox/sign/model/SubFormFieldsPerDocumentFontEnum.java
 src/main/java/com/dropbox/sign/model/SubFormFieldsPerDocumentHyperlink.java
 src/main/java/com/dropbox/sign/model/SubFormFieldsPerDocumentInitials.java
 src/main/java/com/dropbox/sign/model/SubFormFieldsPerDocumentRadio.java
@@ -340,6 +345,9 @@ src/main/java/com/dropbox/sign/model/TemplateAddUserRequest.java
 src/main/java/com/dropbox/sign/model/TemplateCreateEmbeddedDraftRequest.java
 src/main/java/com/dropbox/sign/model/TemplateCreateEmbeddedDraftResponse.java
 src/main/java/com/dropbox/sign/model/TemplateCreateEmbeddedDraftResponseTemplate.java
+src/main/java/com/dropbox/sign/model/TemplateCreateRequest.java
+src/main/java/com/dropbox/sign/model/TemplateCreateResponse.java
+src/main/java/com/dropbox/sign/model/TemplateCreateResponseTemplate.java
 src/main/java/com/dropbox/sign/model/TemplateEditResponse.java
 src/main/java/com/dropbox/sign/model/TemplateGetResponse.java
 src/main/java/com/dropbox/sign/model/TemplateListResponse.java
