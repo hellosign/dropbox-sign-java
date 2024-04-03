@@ -34,18 +34,13 @@ import java.util.List;
 
 public class Example {
     public static void main(String[] args) {
-        var apiClient = Configuration.getDefaultApiClient();
-
-        // Configure HTTP basic authorization: api_key
-        var apiKey = (HttpBasicAuth) apiClient
-            .getAuthentication("api_key");
-        apiKey.setUsername("YOUR_API_KEY");
+        var apiClient = Configuration.getDefaultApiClient()
+            .setApiKey("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
         /*
-        var oauth2 = (HttpBearerAuth) apiClient
-            .getAuthentication("oauth2");
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+        var apiClient = Configuration.getDefaultApiClient()
+            .setBearerToken("YOUR_ACCESS_TOKEN");
         */
 
         var apiAppApi = new ApiAppApi(apiClient);
@@ -105,7 +100,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful operation |  * X-RateLimit-Limit -  <br>  * X-RateLimit-Remaining -  <br>  * X-Ratelimit-Reset -  <br>  |
+| **201** | successful operation |  * X-RateLimit-Limit -  <br>  * X-RateLimit-Remaining -  <br>  * X-Ratelimit-Reset -  <br>  |
 | **4XX** | failed_operation |  -  |
 
 
@@ -127,18 +122,13 @@ import com.dropbox.sign.auth.*;
 
 public class Example {
     public static void main(String[] args) {
-        var apiClient = Configuration.getDefaultApiClient();
-
-        // Configure HTTP basic authorization: api_key
-        var apiKey = (HttpBasicAuth) apiClient
-            .getAuthentication("api_key");
-        apiKey.setUsername("YOUR_API_KEY");
+        var apiClient = Configuration.getDefaultApiClient()
+            .setApiKey("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
         /*
-        var oauth2 = (HttpBearerAuth) apiClient
-            .getAuthentication("oauth2");
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+        var apiClient = Configuration.getDefaultApiClient()
+            .setBearerToken("YOUR_ACCESS_TOKEN");
         */
 
         var apiAppApi = new ApiAppApi(apiClient);
@@ -205,18 +195,13 @@ import com.dropbox.sign.model.*;
 
 public class Example {
     public static void main(String[] args) {
-        var apiClient = Configuration.getDefaultApiClient();
-
-        // Configure HTTP basic authorization: api_key
-        var apiKey = (HttpBasicAuth) apiClient
-            .getAuthentication("api_key");
-        apiKey.setUsername("YOUR_API_KEY");
+        var apiClient = Configuration.getDefaultApiClient()
+            .setApiKey("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
         /*
-        var oauth2 = (HttpBearerAuth) apiClient
-            .getAuthentication("oauth2");
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+        var apiClient = Configuration.getDefaultApiClient()
+            .setBearerToken("YOUR_ACCESS_TOKEN");
         */
 
         var apiAppApi = new ApiAppApi(apiClient);
@@ -284,18 +269,13 @@ import com.dropbox.sign.model.*;
 
 public class Example {
     public static void main(String[] args) {
-        var apiClient = Configuration.getDefaultApiClient();
-
-        // Configure HTTP basic authorization: api_key
-        var apiKey = (HttpBasicAuth) apiClient
-            .getAuthentication("api_key");
-        apiKey.setUsername("YOUR_API_KEY");
+        var apiClient = Configuration.getDefaultApiClient()
+            .setApiKey("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
         /*
-        var oauth2 = (HttpBearerAuth) apiClient
-            .getAuthentication("oauth2");
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+        var apiClient = Configuration.getDefaultApiClient()
+            .setBearerToken("YOUR_ACCESS_TOKEN");
         */
 
         var apiAppApi = new ApiAppApi(apiClient);
@@ -368,18 +348,13 @@ import java.util.List;
 
 public class Example {
     public static void main(String[] args) {
-        var apiClient = Configuration.getDefaultApiClient();
-
-        // Configure HTTP basic authorization: api_key
-        var apiKey = (HttpBasicAuth) apiClient
-            .getAuthentication("api_key");
-        apiKey.setUsername("YOUR_API_KEY");
+        var apiClient = Configuration.getDefaultApiClient()
+            .setApiKey("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
         /*
-        var oauth2 = (HttpBearerAuth) apiClient
-            .getAuthentication("oauth2");
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+        var apiClient = Configuration.getDefaultApiClient()
+            .setBearerToken("YOUR_ACCESS_TOKEN");
         */
 
         var apiAppApi = new ApiAppApi(apiClient);

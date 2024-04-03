@@ -10,6 +10,14 @@ We've made important updates that introduce new functionality and create feature
 However, some of these changes are considered "breaking" in the sense that they'll require you to update your existing code in order to continue using the SDK.
 Please refer to this [migration guide](https://developers.hellosign.com/docs/sdks/java/migration-guide/) for more information.
 
+## Version & Requirements
+This is version 2.x of the Java SDK. It depends on Jakarta EE and Jersey 3.
+
+If your project has not been updated for Jakarta or Jersey 3, you should use the [V1 SDK](https://github.com/hellosign/dropbox-sign-java/tree/v1),
+which uses Jersey 2 & supports compatibility with Java EEs javax namespace.
+
+Both versions will receive updates so use whichever your application prefers.
+
 ## Contributing
 
 This repo is no longer accepting new issues or Pull Requests. All issues or
@@ -48,7 +56,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.dropbox.sign</groupId>
   <artifactId>dropbox-sign</artifactId>
-  <version>1.3.0</version>
+  <version>2.0.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -64,7 +72,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.dropbox.sign:dropbox-sign:1.3.0"
+     implementation "com.dropbox.sign:dropbox-sign:2.0.0"
   }
 ```
 
@@ -78,7 +86,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/dropbox-sign-1.3.0.jar`
+- `target/dropbox-sign-2.0.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -95,18 +103,13 @@ import com.dropbox.sign.model.*;
 
 public class Example {
     public static void main(String[] args) {
-        var apiClient = Configuration.getDefaultApiClient();
-
-        // Configure HTTP basic authorization: api_key
-        var apiKey = (HttpBasicAuth) apiClient
-            .getAuthentication("api_key");
-        apiKey.setUsername("YOUR_API_KEY");
+        var apiClient = Configuration.getDefaultApiClient()
+            .setApiKey("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
         /*
-        var oauth2 = (HttpBearerAuth) apiClient
-            .getAuthentication("oauth2");
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+        var apiClient = Configuration.getDefaultApiClient()
+            .setBearerToken("YOUR_ACCESS_TOKEN");
         */
 
         var accountApi = new AccountApi(apiClient);
@@ -184,6 +187,10 @@ Class | Method | HTTP request | Description
 *SignatureRequestApi* | [**signatureRequestCancel**](docs/SignatureRequestApi.md#signatureRequestCancel) | **POST** /signature_request/cancel/{signature_request_id} | Cancel Incomplete Signature Request
 *SignatureRequestApi* | [**signatureRequestCreateEmbedded**](docs/SignatureRequestApi.md#signatureRequestCreateEmbedded) | **POST** /signature_request/create_embedded | Create Embedded Signature Request
 *SignatureRequestApi* | [**signatureRequestCreateEmbeddedWithTemplate**](docs/SignatureRequestApi.md#signatureRequestCreateEmbeddedWithTemplate) | **POST** /signature_request/create_embedded_with_template | Create Embedded Signature Request with Template
+*SignatureRequestApi* | [**signatureRequestEdit**](docs/SignatureRequestApi.md#signatureRequestEdit) | **PUT** /signature_request/edit/{signature_request_id} | Edit Signature Request
+*SignatureRequestApi* | [**signatureRequestEditEmbedded**](docs/SignatureRequestApi.md#signatureRequestEditEmbedded) | **PUT** /signature_request/edit_embedded/{signature_request_id} | Edit Embedded Signature Request
+*SignatureRequestApi* | [**signatureRequestEditEmbeddedWithTemplate**](docs/SignatureRequestApi.md#signatureRequestEditEmbeddedWithTemplate) | **PUT** /signature_request/edit_embedded_with_template/{signature_request_id} | Edit Embedded Signature Request with Template
+*SignatureRequestApi* | [**signatureRequestEditWithTemplate**](docs/SignatureRequestApi.md#signatureRequestEditWithTemplate) | **PUT** /signature_request/edit_with_template/{signature_request_id} | Edit Signature Request With Template
 *SignatureRequestApi* | [**signatureRequestFiles**](docs/SignatureRequestApi.md#signatureRequestFiles) | **GET** /signature_request/files/{signature_request_id} | Download Files
 *SignatureRequestApi* | [**signatureRequestFilesAsDataUri**](docs/SignatureRequestApi.md#signatureRequestFilesAsDataUri) | **GET** /signature_request/files_as_data_uri/{signature_request_id} | Download Files as Data Uri
 *SignatureRequestApi* | [**signatureRequestFilesAsFileUrl**](docs/SignatureRequestApi.md#signatureRequestFilesAsFileUrl) | **GET** /signature_request/files_as_file_url/{signature_request_id} | Download Files as File Url
@@ -270,6 +277,10 @@ Class | Method | HTTP request | Description
  - [SignatureRequestBulkSendWithTemplateRequest](docs/SignatureRequestBulkSendWithTemplateRequest.md)
  - [SignatureRequestCreateEmbeddedRequest](docs/SignatureRequestCreateEmbeddedRequest.md)
  - [SignatureRequestCreateEmbeddedWithTemplateRequest](docs/SignatureRequestCreateEmbeddedWithTemplateRequest.md)
+ - [SignatureRequestEditEmbeddedRequest](docs/SignatureRequestEditEmbeddedRequest.md)
+ - [SignatureRequestEditEmbeddedWithTemplateRequest](docs/SignatureRequestEditEmbeddedWithTemplateRequest.md)
+ - [SignatureRequestEditRequest](docs/SignatureRequestEditRequest.md)
+ - [SignatureRequestEditWithTemplateRequest](docs/SignatureRequestEditWithTemplateRequest.md)
  - [SignatureRequestGetResponse](docs/SignatureRequestGetResponse.md)
  - [SignatureRequestListResponse](docs/SignatureRequestListResponse.md)
  - [SignatureRequestRemindRequest](docs/SignatureRequestRemindRequest.md)
@@ -425,7 +436,7 @@ apisupport@hellosign.com
 This Java package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
 - API version: `3.0.0`
-    - Package version: `1.3.0`
+    - Package version: `2.0.0`
 - Build package: `org.openapitools.codegen.languages.JavaClientCodegen`
 
 
