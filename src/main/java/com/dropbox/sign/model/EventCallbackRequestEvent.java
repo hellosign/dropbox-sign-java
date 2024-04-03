@@ -14,7 +14,6 @@
 package com.dropbox.sign.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.HashMap;
 import com.dropbox.sign.model.EventCallbackRequestEventMetadata;
@@ -23,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -37,13 +37,13 @@ import com.dropbox.sign.ApiException;
  */
 @ApiModel(description = "Basic information about the event that occurred.")
 @JsonPropertyOrder({
-    EventCallbackRequestEvent.JSON_PROPERTY_EVENT_TIME,
-    EventCallbackRequestEvent.JSON_PROPERTY_EVENT_TYPE,
-    EventCallbackRequestEvent.JSON_PROPERTY_EVENT_HASH,
-    EventCallbackRequestEvent.JSON_PROPERTY_EVENT_METADATA
+  EventCallbackRequestEvent.JSON_PROPERTY_EVENT_TIME,
+  EventCallbackRequestEvent.JSON_PROPERTY_EVENT_TYPE,
+  EventCallbackRequestEvent.JSON_PROPERTY_EVENT_HASH,
+  EventCallbackRequestEvent.JSON_PROPERTY_EVENT_METADATA
 })
 @JsonIgnoreProperties(ignoreUnknown=true)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class EventCallbackRequestEvent {
   public static final String JSON_PROPERTY_EVENT_TIME = "event_time";
   private String eventTime;
@@ -94,7 +94,9 @@ public class EventCallbackRequestEvent {
     
     TEMPLATE_ERROR("template_error"),
     
-    CALLBACK_TEST("callback_test");
+    CALLBACK_TEST("callback_test"),
+    
+    SIGNATURE_REQUEST_SIGNER_REMOVED("signature_request_signer_removed");
 
     private String value;
 
@@ -159,7 +161,7 @@ public class EventCallbackRequestEvent {
    * Time the event was created (using Unix time).
    * @return eventTime
   **/
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Time the event was created (using Unix time).")
   @JsonProperty(JSON_PROPERTY_EVENT_TIME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -185,7 +187,7 @@ public class EventCallbackRequestEvent {
    * Type of callback event that was triggered.
    * @return eventType
   **/
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Type of callback event that was triggered.")
   @JsonProperty(JSON_PROPERTY_EVENT_TYPE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -211,7 +213,7 @@ public class EventCallbackRequestEvent {
    * Generated hash used to verify source of event data.
    * @return eventHash
   **/
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Generated hash used to verify source of event data.")
   @JsonProperty(JSON_PROPERTY_EVENT_HASH)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -237,10 +239,10 @@ public class EventCallbackRequestEvent {
    * Get eventMetadata
    * @return eventMetadata
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @jakarta.annotation.Nullable
+  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_EVENT_METADATA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public EventCallbackRequestEventMetadata getEventMetadata() {
     return eventMetadata;
@@ -248,7 +250,7 @@ public class EventCallbackRequestEvent {
 
 
   @JsonProperty(JSON_PROPERTY_EVENT_METADATA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEventMetadata(EventCallbackRequestEventMetadata eventMetadata) {
     this.eventMetadata = eventMetadata;
   }
