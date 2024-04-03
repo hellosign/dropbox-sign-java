@@ -8,18 +8,13 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        var apiClient = Configuration.getDefaultApiClient();
-
-        // Configure HTTP basic authorization: api_key
-        var apiKey = (HttpBasicAuth) apiClient
-            .getAuthentication("api_key");
-        apiKey.setUsername("f413398b383310baaadcafa55ef43d9f056eb62461c5e20a4a62b221867ca77d");
+        var apiClient = Configuration.getDefaultApiClient()
+            .setApiKey("YOUR_API_KEY");
 
         // or, configure Bearer (JWT) authorization: oauth2
         /*
-        var oauth2 = (HttpBearerAuth) apiClient
-            .getAuthentication("oauth2");
-        oauth2.setBearerToken("YOUR_ACCESS_TOKEN");
+        var apiClient = Configuration.getDefaultApiClient()
+            .setBearerToken("YOUR_ACCESS_TOKEN");
         */
 
         var embeddedApi = new EmbeddedApi(apiClient);
