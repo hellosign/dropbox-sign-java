@@ -58,10 +58,6 @@ docs/SignatureRequestBulkCreateEmbeddedWithTemplateRequest.md
 docs/SignatureRequestBulkSendWithTemplateRequest.md
 docs/SignatureRequestCreateEmbeddedRequest.md
 docs/SignatureRequestCreateEmbeddedWithTemplateRequest.md
-docs/SignatureRequestEditEmbeddedRequest.md
-docs/SignatureRequestEditEmbeddedWithTemplateRequest.md
-docs/SignatureRequestEditRequest.md
-docs/SignatureRequestEditWithTemplateRequest.md
 docs/SignatureRequestGetResponse.md
 docs/SignatureRequestListResponse.md
 docs/SignatureRequestRemindRequest.md
@@ -272,10 +268,6 @@ src/main/java/com/dropbox/sign/model/SignatureRequestBulkCreateEmbeddedWithTempl
 src/main/java/com/dropbox/sign/model/SignatureRequestBulkSendWithTemplateRequest.java
 src/main/java/com/dropbox/sign/model/SignatureRequestCreateEmbeddedRequest.java
 src/main/java/com/dropbox/sign/model/SignatureRequestCreateEmbeddedWithTemplateRequest.java
-src/main/java/com/dropbox/sign/model/SignatureRequestEditEmbeddedRequest.java
-src/main/java/com/dropbox/sign/model/SignatureRequestEditEmbeddedWithTemplateRequest.java
-src/main/java/com/dropbox/sign/model/SignatureRequestEditRequest.java
-src/main/java/com/dropbox/sign/model/SignatureRequestEditWithTemplateRequest.java
 src/main/java/com/dropbox/sign/model/SignatureRequestGetResponse.java
 src/main/java/com/dropbox/sign/model/SignatureRequestListResponse.java
 src/main/java/com/dropbox/sign/model/SignatureRequestRemindRequest.java
