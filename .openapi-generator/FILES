@@ -11,6 +11,7 @@ docs/AccountCreateResponse.md
 docs/AccountGetResponse.md
 docs/AccountResponse.md
 docs/AccountResponseQuotas.md
+docs/AccountResponseUsage.md
 docs/AccountUpdateRequest.md
 docs/AccountVerifyRequest.md
 docs/AccountVerifyResponse.md
@@ -227,6 +228,7 @@ src/main/java/com/dropbox/sign/model/AccountCreateResponse.java
 src/main/java/com/dropbox/sign/model/AccountGetResponse.java
 src/main/java/com/dropbox/sign/model/AccountResponse.java
 src/main/java/com/dropbox/sign/model/AccountResponseQuotas.java
+src/main/java/com/dropbox/sign/model/AccountResponseUsage.java
 src/main/java/com/dropbox/sign/model/AccountUpdateRequest.java
 src/main/java/com/dropbox/sign/model/AccountVerifyRequest.java
 src/main/java/com/dropbox/sign/model/AccountVerifyResponse.java
