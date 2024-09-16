@@ -18,7 +18,7 @@ additionalProperties:
   groupId: com.dropbox.sign
   artifactId: dropbox-sign
   artifactName: Dropbox Sign Java SDK
-  artifactVersion: "2.2.0"
+  artifactVersion: "2.2.1"
   artifactUrl: https://github.com/hellosign/dropbox-sign-java
   artifactDescription: Use the Dropbox Sign Java SDK to connect your Java app to the service of Dropbox Sign in microseconds!
   scmConnection: scm:git:git://github.com/hellosign/dropbox-sign-java.git
@@ -27,11 +27,15 @@ additionalProperties:
   licenseName: MIT License
   licenseUrl: https://www.opensource.org/licenses/mit-license.php
   useCustomTemplateCode: true
+  licenseCopyrightYear: 2024
 files:
-  EventCallbackHelper.mustache:
+  dropbox-EventCallbackHelper.mustache:
     templateType: SupportingFiles
     destinationFilename: src/main/java/com/dropbox/sign/EventCallbackHelper.java
-  VERSION.mustache:
+  dropbox-LICENSE.mustache:
+    templateType: SupportingFiles
+    destinationFilename: LICENSE
+  dropbox-VERSION.mustache:
     templateType: SupportingFiles
     destinationFilename: VERSION
 globalProperties:
