@@ -20,8 +20,8 @@ target
 .gradle
 build
 
-/.composer
-/vendor
-/.idea/
-/.openapi-generator
-/.github/workflows/maven.yml
+.composer
+vendor
+.idea/
+.openapi-generator
+.github/workflows/maven.yml
