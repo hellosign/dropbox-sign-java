@@ -59,7 +59,7 @@ jobs:
         run: echo "PACKAGE_VERSION=$(cat VERSION)" >> $GITHUB_ENV
 
       - name: Publish Release to Maven Central
-        run: ./gradlew closeAndReleaseRepository --no-daemon --no-parallel
+        run: ./gradlew releaseRepository --no-daemon --no-parallel
         if: "!endsWith(env.PACKAGE_VERSION, '-SNAPSHOT')"
         env:
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.SONATYPE_USERNAME }}
