@@ -15,7 +15,7 @@ package com.dropbox.sign;
 
 @jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.12.0")
 public class Configuration {
-    public static final String VERSION = "2.8.0";
+    public static final String VERSION = "2.9.0";
 
     private static volatile ApiClient defaultApiClient = new ApiClient();
 
