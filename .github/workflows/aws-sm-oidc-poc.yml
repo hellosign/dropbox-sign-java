@@ -1,0 +1,68 @@
+# Temporary OIDC + AWS SM access check for hellosign/dropbox-sign-java.
+# Does not print secret values. Remove this workflow after the check succeeds.
+#
+# The IAM roles from dropbox-internal/server#548808 are branch-restricted:
+#   oidc-github-hellosign-dropbox-sign-java-branch-main
+#   oidc-github-hellosign-dropbox-sign-java-branch-v1
+# A PR branch cannot assume them. Merge this file to main, then Run workflow
+# on main (Actions → AWS Secrets Manager OIDC POC → Run workflow).
+
+name: AWS Secrets Manager OIDC POC
+
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  fetch-maven-secrets:
+    if: github.repository == 'hellosign/dropbox-sign-java'
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v6
+        with:
+          role-to-assume: arn:aws:iam::521590706193:role/oidc-github-hellosign-dropbox-sign-java-branch-${{ github.ref_name }}
+          aws-region: us-west-2
+          role-duration-seconds: 900
+          role-session-name: dropbox-sign-java-oidc-poc-${{ github.run_id }}
+          mask-aws-account-id: true
+
+      - name: Confirm assumed role
+        run: aws sts get-caller-identity --query Arn --output text
+
+      - name: Get Maven Central secrets from AWS Secrets Manager
+        uses: aws-actions/aws-secretsmanager-get-secrets@v3
+        with:
+          secret-ids: |
+            SONATYPE_USERNAME,sdk-release-maven-central-token-username
+            SONATYPE_PASSWORD,sdk-release-maven-central-token-password
+            SIGNING_KEY,sdk-release-signing-key
+            SIGNING_PASSWORD,sdk-release-signing-password
+          parse-json-secrets: false
+
+      - name: Verify secrets were retrieved
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          missing=0
+          for name in SONATYPE_USERNAME SONATYPE_PASSWORD SIGNING_KEY SIGNING_PASSWORD; do
+            value="${!name:-}"
+            if [[ -z "$value" ]]; then
+              echo "::error::${name} was empty"
+              missing=1
+            else
+              echo "${name} is set (${#value} characters)"
+            fi
+          done
+
+          if [[ "$missing" -ne 0 ]]; then
+            echo "::error::One or more secrets were missing"
+            exit 1
+          fi
+
+          echo "OIDC role assumed and all four Maven publishing secrets were retrieved"
